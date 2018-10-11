@@ -9,7 +9,11 @@
   <link rel="stylesheet" href="css/main.css">
   <body class="grid">
     <header class="header grid__header">
-      <div class="header__inner"><a class="header__logo"><img class="header__logo-pic" src="img/logo.svg" width="98" height="39" alt="Яндекс Дом"></a><a class="header__btn hamburger menu__btn" href="#"><span class="hamburger__icon"></span><span class="visually-hidden">Открыть меню</span></a>
+      <div class="header__inner">
+      <a class="header__logo"><img class="header__logo-pic" src="img/logo.svg" width="98" height="39" alt="Яндекс Дом"></a>
+      <a class="header__btn hamburger menu__btn" href="#">
+      <span class="hamburger__icon"></span>
+      <span class="visually-hidden">Открыть меню</span></a>
         <nav class="header__menu menu">
           <ul class="menu__list">
             <li class="menu__item"><a class="menu__link menu__link--active" href="#">События</a></li>
@@ -313,8 +317,9 @@
             <div class="event__inner event__inner--light">
               <div class="event__camera">
                 <picture>
-                  <source source media="(min-width: 1024px)" srcset="../img/camera-pic@3x.png">
-                  <source source media="(min-width: 768px)" srcset="../img/camera-pic@3x.png"><img src="../img/camera-pic.png" alt="веб-камера">
+                  <source media="min-width: 1024px" srcset="./img/camera-pic@3x.png">
+                  <source media="min-width: 768px" srcset="./img/camera-pic@3x.png">
+                  <img src="./img/camera-pic.png" alt="веб-камера">
                 </picture>
               </div>
               <div class="event__row event__camera-controls">
