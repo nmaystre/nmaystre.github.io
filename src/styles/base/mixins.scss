@@ -1,0 +1,61 @@
+@mixin box-shadow {
+  box-shadow: 0 2px 6px 0 rgba(197, 186, 186, 0.50);
+}
+
+@mixin multiLineEllipsis($lineHeight, $lineCount, $bgColor) {
+  overflow: hidden;
+  position: relative;
+  line-height: $lineHeight;
+  max-height: $lineHeight * $lineCount;
+  text-align: justify;
+  margin-right: -1em;
+  padding-right: 1em;
+  &:before {
+    content: '...';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    background: $bgColor;
+  }
+}
+
+@mixin range-thumb($height, $width, $radius, $bgColor) {
+
+  &::-moz-range-thumb {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: $bgColor;
+    height: $height;
+    width: $width;
+    border-radius: $radius;
+  }
+
+  &::-webkit-slider-thumb {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: $bgColor;
+    height: $height;
+    width: $width;
+    border-radius: $radius;
+  }
+
+  &::-ms-thumb {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: $bgColor;
+    height: $height;
+    width: $width;
+    border-radius: $radius;
+  }
+}

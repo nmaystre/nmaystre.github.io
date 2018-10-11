@@ -1,0 +1,81 @@
+script.
+  plotters = [];
+
+each item, index in events
+  article.feed__card.event(class=`event--` + item.type + ` event--`+item.size)
+    div.event__inner(class=item.type === `critical` ? `event__inner--critical` : ``)
+      h3.heading.heading--m.event__header
+        span.event__icon
+          svg(width='36px' height='36px')
+            use(xlink:href=`img/icons.svg#` + item.icon)
+        span.event__title=item.title
+      div.event__row(class=item.size === `s` ? `event__row--tocol` : ``)
+        p.text=item.source
+        p.text=item.time
+    if item.description
+      div.event__inner.event__inner--light
+        p.event__message.message(class=item.size === `l` ? `message--l` : ``)=item.description
+    if item.data
+      div.event__inner.event__inner--light
+        if item.icon === `music`
+          div.event__data.event__data--music.song
+            div.song__data.song__data--start
+              img(src=item.data.albumcover width='52' height='52' alt=item.data.artist).song__cover
+              div.song__info
+                p.song__name=item.data.artist + ' - ' + item.data.track.name
+                div.song__track
+                  input(type="range" aria-label="продолжительность").song__track-range
+                  span.song__track-time=item.data.track.length
+            div.song__data.song__data--center
+              div.song__controls
+                button(type="button" aria-label="назад").song__control.song__control--back
+                  svg(width='53px' height='52px')
+                    use(xlink:href=`img/icons.svg#prev-song`)
+                button(type="button" aria-label="далее").song__control.song__control--next
+                  svg(width='53px' height='52px')
+                    use(xlink:href=`img/icons.svg#next-song`)
+              input(type="range" aria-label="громкость" value=item.data.volume).song__volume-range
+              span.song__volume=item.data.volume + '%'
+        if item.icon === `stats`
+          div.event__data.stats
+            div.stats__graph
+              canvas(id="myChart" + index width="400" height="400")
+              script.
+                plotters.push({index: #{index}, data: !{JSON.stringify(item.data)}});
+              //img(src="../img/stats.svg")
+        if item.icon === `thermal`
+          div.event__data.thermal
+            div.event__row
+              p.thermal__data.text
+                | Температура:&nbsp;
+                b=item.data.temperature
+                | &nbsp;C
+              p.thermal__data.text
+                | Влажность:&nbsp;
+                b=item.data.humidity
+                | &nbsp;%
+        if item.data.buttons
+          div.event__btns
+            each val , index in item.data.buttons
+              button.event__btn=val
+        if item.data.image
+          div.event__camera
+            picture
+              source(source media="(min-width: 1024px)" srcset="../img/camera-pic@3x.png")
+              source(source media="(min-width: 768px)" srcset="../img/camera-pic@3x.png")
+              img(src="../img/camera-pic.png" alt="веб-камера")
+          div.event__row.event__camera-controls
+            p.text Приближение:
+              = ' '
+              span 78%
+            p.text Яркость:
+              = ' '
+              span 50%
+    button.event__action.event__action--close(type="button" class=item.type === `critical` ? `event__action--light` : ``)
+      span.visually-hidden Закрыть
+      svg(width='14px' height='14px')
+        use(xlink:href=`img/icons.svg#cross`)
+    button(type="button").event__action.event__action--more
+      span.visually-hidden Подробнее
+      svg(width='11px' height='17px')
+        use(xlink:href=`img/icons.svg#next`)
