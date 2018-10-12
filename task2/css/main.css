@@ -734,20 +734,36 @@ img {
   .event__btn:nth-child(2n) {
     background-color: #E5E5E5; }
 
-.event__camera {
+.event__camera-wrp {
   border-radius: 20px;
   overflow: hidden;
-  height: 300px; }
+  height: 300px;
+  position: relative;
+  -ms-touch-action: none;
+  touch-action: none; }
   @media screen and (min-width: 1200px) {
-    .event__camera {
+    .event__camera-wrp {
       height: 425px; } }
-  .event__camera img {
-    height: 100%;
-    width: auto;
-    -o-object-fit: cover;
-    object-fit: cover;
-    -o-object-position: center;
-    object-position: center; }
+
+.event__camera-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  -ms-touch-action: none;
+  touch-action: none;
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+  width: auto;
+  height: 100%;
+  min-height: 100%;
+  max-width: inherit;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center;
+  object-position: center; }
+  @media screen and (min-width: 768px) {
+    .event__camera-img {
+      width: 100%; } }
 
 .event__camera-controls {
   display: none; }
@@ -768,7 +784,9 @@ img {
   -webkit-transition: all 0.25s linear;
   transition: all 0.25s linear;
   color: currentcolor;
-  cursor: pointer; }
+  cursor: pointer;
+  -ms-touch-action: none;
+  touch-action: none; }
   .event__action svg {
     fill: #666666;
     stroke: #666666; }
