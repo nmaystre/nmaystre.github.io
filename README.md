@@ -10,4 +10,5 @@
 <h2>Ссылки на сборки:</h2>
 <ol>
   <li>https://nmaystre.github.io/task1/index.html</li>
+  <li>https://nmaystre.github.io/task2/index.html</li>
 </ol>
