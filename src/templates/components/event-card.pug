@@ -61,9 +61,9 @@ each item, index in events
         if item.data.image
           div.event__camera
             picture
-              source(source media="(min-width: 1024px)" srcset="../img/camera-pic@3x.png")
-              source(source media="(min-width: 768px)" srcset="../img/camera-pic@3x.png")
-              img(src="../img/camera-pic.png" alt="веб-камера")
+              source(media="(min-width: 1024px)" srcset="./img/camera-pic@3x.png")
+              source(media="(min-width: 768px)" srcset="./img/camera-pic@3x.png")
+              img(src="./img/camera-pic.png" alt="веб-камера")
           div.event__row.event__camera-controls
             p.text Приближение:
               = ' '
