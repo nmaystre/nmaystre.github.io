@@ -28,11 +28,21 @@ if (videoCameras.length > 0) {
               });
         });
     }
+
+
     const videoForm = document.querySelectorAll('.video__controls'); 
-    const videoContrastInput = videoForm.querySelectorAll('.video__input--contrast'); 
-    const videoBrightnessInput = videoForm.querySelectorAll('.video__inpit--brightness');
+    const videoContrastInput = document.querySelectorAll('.video__input--contrast'); 
+    const videoBrightnessInput = document.querySelectorAll('.video__inpit--brightness');
+    console.log(videoContrastInput);
 
-
+    for (let j; j < videoContrastInput.length; j++) {
+        videoContrastInput[j].addEventListener('oninput', (e) => {
+            const videoContrastLabel = document.querySelectorAll('.video__label--contrast');
+            const videoContrastValue = videoContrastLabel.querySelector('.video__value');
+            console.log(e.target);
+            videoContrastValue.innerHtml = e.target.value;
+        });
+    }
 
 
 }

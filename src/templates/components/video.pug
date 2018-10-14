@@ -1,42 +1,41 @@
+- 
+    const videoData = [
+            {   
+                id: 'video-1',
+                brightness: '20',
+                contrast: '30',
+                position: 'topl'
+            },
+            {   
+                id: 'video-2',
+                brightness: '50',
+                contrast: '50',
+                position: 'topr'
+            },
+            {   
+                id: 'video-4',
+                brightness: '60',
+                contrast: '60',
+                position: 'bottoml'
+            },
+            {   
+                id: 'video-4',
+                brightness: '60',
+                contrast: '50',
+                position: 'bottomr'
+            },
+        ];
+  
 section.video
     ul.video__list
+      each video in videoData
         li.video__item.video__item--topl
-            video.video__player(id="video-1" muted frameborder="0")
+            video.video__player(id=video.id muted frameborder="0")
             form.video__controls
-              label.video__label.video__label--brightness(for="video-1__brightness") Яркость:&nbsp; 
-                span.video__label-value.video__label-value--brightness 50%
-                input.video__input(type="range" id="video-1__brightness" value="50%")
-              label.video__label.video__label--contrast(for="video-1__contrast") Контраст:&nbsp;
+              label.video__label.video__label--brightness Яркость:&nbsp; 
+                span.video__value.video__value--brightness 50%
+                input.video__input.video__input--contrast(type="range" value=video.contrast min="0" max="100" step="10")
+              label.video__label.video__label--contrast Контраст:&nbsp;
                 span.video__label-value.video__label-value--contrast 50%
-                input.video__input(type="range" id="video-1__contrast" value="50%")
-              button.video__close(type="button") Все камеры
-        li.video__item.video__item--topr
-            video.video__player(id="video-2" muted)
-            form.video__controls
-              label.video__label.video__label--brightness(for="video-2__brightness") Яркость:&nbsp;  
-                span.video__label-value.video__label-value--brightness 50%
-                input.video__input(type="range" id="video-2__brightness" value="50%")
-              label.video__label.video__label--contrast(for="video-2__contrast") Контраст:&nbsp;
-                span.video__label-value.video__label-value--contrast 50%
-                input.video__input(type="range" id="video-2__contrast" value="50%")
-              button.video__close(type="button") Все камеры
-        li.video__item.video__item--bottoml
-            video.video__player(id="video-3" muted)
-            form.video__controls
-              label.video__label.video__label--brightness(for="video-3__brightness") Яркость:&nbsp; 
-                span.video__label-value.video__label-value--brightness 50%
-                input.video__input(type="range" id="video-3__brightness" value="50%")
-              label.video__label.video__label--contrast(for="video-3__contrast") Контраст:&nbsp;
-                span.video__label-value.video__label-value--contrast 50%
-                input.video__input(type="range" id="video-3__contrast" value="50%")
-              button.video__close(type="button") Все камеры
-        li.video__item.video__item--bottomr
-            video.video__player(id="video-4" muted)
-            form.video__controls
-              label.video__label.video__label--brightness(for="video-4__brightness") Яркость:&nbsp; 
-                span.video__label-value.video__label-value--brightness 50%
-                input.video__input(type="range" id="video-4__brightness" value="50%")
-              label.video__label.video__label--contrast(for="video-4__contrast") Контраст:&nbsp;
-                span.video__label-value.video__label-value--contrast 50%
-                input.video__input(type="range" id="video-4__contrast" value="50%")
+                input.video__input(type="range" value=video.brightness min="0" max="100" step="10")
               button.video__close(type="button") Все камеры
