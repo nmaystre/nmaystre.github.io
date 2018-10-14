@@ -32,15 +32,32 @@ if (videoCameras.length > 0) {
 
     const videoForm = document.querySelectorAll('.video__controls'); 
     const videoContrastInput = document.querySelectorAll('.video__input--contrast'); 
-    const videoBrightnessInput = document.querySelectorAll('.video__inpit--brightness');
-    console.log(videoContrastInput);
 
-    for (let j; j < videoContrastInput.length; j++) {
-        videoContrastInput[j].addEventListener('oninput', (e) => {
-            const videoContrastLabel = document.querySelectorAll('.video__label--contrast');
-            const videoContrastValue = videoContrastLabel.querySelector('.video__value');
-            console.log(e.target);
-            videoContrastValue.innerHtml = e.target.value;
+    for (let j = 0; j < videoContrastInput.length; j++) {
+        videoContrastInput[j].addEventListener('input', (e) => {
+            let videoContrastLabel = e.target.parentNode;
+            let videoContrastValue = videoContrastLabel.querySelector('.video__value--contrast');
+            videoContrastValue.innerHTML = e.target.value + ' %';
+
+            const videoStreamContainer = e.target.parentNode.parentNode.parentNode;
+            const videoStream = videoStreamContainer.querySelector('.video__player');
+            let videoStreamContrast = (0.5+e.target.value/100);
+            videoStream.style.webkitFilter = "contrast("+videoStreamContrast+")" ;
+        });
+    }
+
+    const videoBrightInput = document.querySelectorAll('.video__input--brightness');
+
+    for (let j = 0; j < videoBrightInput.length; j++) {
+        videoBrightInput[j].addEventListener('input', (e) => {
+            let videoBrightLabel = e.target.parentNode;
+            let videoBrightValue = videoBrightLabel.querySelector('.video__value--brightness');
+            videoBrightValue.innerHTML = e.target.value + ' %';
+
+            const videoStreamContainer = e.target.parentNode.parentNode.parentNode;
+            const videoStream = videoStreamContainer.querySelector('.video__player');
+            let videoStreamBright = (0.5+e.target.value/100);
+            videoStream.style.webkitFilter = "brightness("+videoStreamBright+")" ;
         });
     }
 
