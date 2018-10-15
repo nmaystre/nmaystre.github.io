@@ -11,4 +11,5 @@
 <ol>
   <li>https://nmaystre.github.io/task1/index.html</li>
   <li>https://nmaystre.github.io/task2/index.html</li>
+  <li>https://nmaystre.github.io/task3/videosurveillance.html</li>
 </ol>
