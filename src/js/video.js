@@ -29,6 +29,7 @@ if (videoCameras.length > 0) {
         });
     }
 
+    // Яркость-контрастность для картинки
 
     const videoForm = document.querySelectorAll('.video__controls'); 
     const videoContrastInput = document.querySelectorAll('.video__input--contrast'); 
@@ -60,6 +61,50 @@ if (videoCameras.length > 0) {
             videoStream.style.webkitFilter = "brightness("+videoStreamBright+")" ;
         });
     }
+
+    // определяем уровень звука
+
+    for (let k = 0; k < videoCameras.length; k++) {
+
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const analyser = audioCtx.createAnalyser();
+    const source = audioCtx.createMediaElementSource(videoCameras[k]);
+    source.connect(analyser);
+    analyser.fftSize = 256;
+    const bufferLength = analyser.frequencyBinCount;
+    console.log(bufferLength);
+    const dataArray = new Uint8Array(bufferLength);
+    analyser.getByteTimeDomainData(dataArray);
+
+    // рисуем График  
+    
+    const videoContainer = videoCameras[k].parentNode;
+    const canvas = videoContainer.querySelector(".video__canvas");
+    const canvasWidth = canvas.width;
+    const canvasHeight = canvas.height;
+
+    const canvasCtx = canvas.getContext("2d");    
+    canvasCtx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+    function draw() {
+        requestAnimationFrame(draw);
+        analyser.getByteFrequencyData(dataArray);
+        canvasCtx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+        canvasCtx.fillRect(0, 0, canvasWidth, canvasHeight);
+        const barWidth = (canvasWidth / bufferLength) * 10;
+        let barHeight;
+        let x = 0;
+
+        for(let i = 0; i < bufferLength; i++) {
+            barHeight = dataArray[i]/2;
+            canvasCtx.fillStyle = 'rgb(' + (barHeight+250) + ',217,62)';
+            canvasCtx.fillRect(x, canvasHeight-barHeight, barWidth, barHeight);
+            x += barWidth + 1;
+          }
+    }
+    draw();
+
+    };
 
 
 }
