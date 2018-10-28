@@ -1,5 +1,7 @@
+const statsGraph = document.querySelector('.stats__graph');
 import 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js'
 
+if (statsGraph) {
 plotters.forEach(function (data) {
   const chartWrp = document.querySelector('#myChart' + data.index).getContext('2d');
 
@@ -66,3 +68,4 @@ plotters.forEach(function (data) {
     }
   });
 });
+}

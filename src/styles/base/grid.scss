@@ -55,6 +55,18 @@
   }
 }
 
+.grid__video {
+  grid-area: main;
+
+  @media #{$breakpointDesktop} {
+    max-width: 1366px;
+    width: 100%;
+    margin: 0 auto auto;
+    padding: $gap-l $gap-l 0;
+  }
+}
+
+
 .grid__footer {
   grid-area: ft;
   justify-self: flex-end;
