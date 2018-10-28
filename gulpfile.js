@@ -14,6 +14,8 @@ var sass = require('gulp-sass');
 var svgmin = require("gulp-svgmin");
 var svgstore = require("gulp-svgstore");
 var data = require('gulp-data');
+var del = require('del');
+
 
 
 var onError = function (err) {
@@ -40,7 +42,7 @@ gulp.task('styles', function () {
     .pipe(plumber({errorHandler: onError}))
     .pipe(sass({indentedSyntax: true}))
     .pipe(autoprefixer({
-      browsers: ['last 2 versions'],
+      browsers: ['last 4 versions'],
       cascade: false
     }))
     .pipe(gulp.dest('./build/css'));
@@ -89,6 +91,10 @@ gulp.task("icons", function () {
 
 gulp.task('default', function () {
   gulp.start('styles', 'templates', 'scripts', 'images', 'icons');
+});
+
+gulp.task('clean', function () {
+  return del(['src/**/*']);
 });
 
 gulp.task('watch', function () {
