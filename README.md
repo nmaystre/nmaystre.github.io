@@ -1,11 +1,5 @@
 # nmaystre.github.io
 
-```
-npm i
-gulp
-gulp watch
-```
-
 <h2>Структура репозитория:</h2>
 
 <ul>
