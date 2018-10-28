@@ -59,11 +59,8 @@ each item, index in events
             each val , index in item.data.buttons
               button.event__btn=val
         if item.data.image
-          div.event__camera
-            picture
-              source(media="(min-width: 1024px)" srcset="./img/camera-pic@3x.png")
-              source(media="(min-width: 768px)" srcset="./img/camera-pic@3x.png")
-              img(src="./img/camera-pic.png" alt="веб-камера")
+          div.event__camera-wrp(style="touch-action: none;")
+            img(src="./img/camera-pic.png" alt="веб-камера" style="touch-action: none;").event__camera-img
           div.event__row.event__camera-controls
             p.text Приближение:
               = ' '
