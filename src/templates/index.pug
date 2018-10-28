@@ -1,0 +1,20 @@
+doctype html
+html(lang='ru')
+  head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  meta(name='robots' content='noindex')
+  title
+  meta(name='description' content='')
+  link(rel='stylesheet' href='css/main.css')
+
+  body.grid
+    include components/header
+    main.grid__events
+      section.section
+        div.section__header
+          h2.heading.heading--xl Лента событий
+        div.event__list.section__content
+          include components/event-card
+    include components/footer
+    script(src='js/bundle.js' type="module")
