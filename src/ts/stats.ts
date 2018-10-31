@@ -1,9 +1,10 @@
 const statsGraph: HTMLElement | null = document.querySelector('.stats__graph');
+import { Chart } from 'chart.js';
 // import 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js';
 // import { AnyTypeAnnotation } from 'babel-types';
 
 declare let plotters: any;
-declare let Chart: any;
+// declare let Chart: any;
 
 if (statsGraph) {
 	plotters.forEach(function(data) {
