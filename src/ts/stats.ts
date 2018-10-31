@@ -1,23 +1,52 @@
+import { Chart, ChartData, ChartDataSets } from 'chart.js';
+
 const statsGraph: HTMLElement | null = document.querySelector('.stats__graph');
-import { Chart } from 'chart.js';
 // import 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js';
 // import { AnyTypeAnnotation } from 'babel-types';
 
-declare let plotters: any;
+type Keys = 'electricity' | 'water' | 'gas';
+
+type DataValue = { [K in Keys]: Array<Array<string | number>> };
+
+type Data = {
+	type: string;
+	values: Array<DataValue>;
+};
+
+class Plot {
+	index: number;
+	data: Data;
+}
+
+declare let plotters: Array<Plot>;
+
+class Set {
+	data: Array<number>;
+	backgroundColor: Array<string>;
+	borderColor: Array<string>;
+	borderWidth: number;
+	cubicInterpolationMode: string;
+}
+
+class PlotOptions {
+	labels: Array<string>;
+	datasets: Array<Set>;
+}
+
 // declare let Chart: any;
 
 if (statsGraph) {
-	plotters.forEach(function(data) {
+	plotters.forEach(function(data: Plot) {
 		const canvas: HTMLCanvasElement = document.querySelector('#myChart' + data.index);
 		const chartWrp: RenderingContext | CanvasRenderingContext2D = canvas.getContext('2d');
 
-		let plotOptions = {
+		let plotOptions: ChartData = {
 			labels: [ '1', '2', '3', '4', '5', '6', '7' ],
 			datasets: []
 		};
 
 		data.data.values.forEach(function(category) {
-			let set = {
+			let set: ChartDataSets = {
 				data: [],
 				backgroundColor: [ 'rgba(0, 0, 0, 0.1)' ],
 				borderColor: [ 'transparent' ],
@@ -25,10 +54,9 @@ if (statsGraph) {
 				cubicInterpolationMode: 'monotone'
 			};
 
-			// @ts-ignore
-			for (let value of Object.values(category)) {
-				(value as Array<any>).forEach(function(val) {
-					set.data.push(val[1]);
+			for (let value of (<any>Object)['values'](category)) {
+				value.forEach(function(val: [string, number]) {
+					(set.data as number[]).push(val[1] as number);
 				});
 			}
 			plotOptions.datasets.push(set);
@@ -40,7 +68,7 @@ if (statsGraph) {
 			options: {
 				responsive: true,
 				maintainAspectRatio: false,
-				legend: false,
+				legend: null,
 				scales: {
 					yAxes: [
 						{

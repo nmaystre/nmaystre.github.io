@@ -5,7 +5,23 @@ window.onload = function() {
 	const zoomWrpWidth = (zoomWrapper as HTMLElement).offsetWidth;
 	const zoomImgWidth = (zoomImg as HTMLElement).offsetWidth;
 
-	let pointerEvents = [];
+	type MyPointerEvent = {
+		id: number;
+		startPosition: {
+			x: number;
+			y: number;
+		};
+		prevPosition: {
+			x: number;
+			y: number;
+		};
+		currentPosition: {
+			x: number;
+			y: number;
+		};
+	};
+
+	let pointerEvents: Array<MyPointerEvent> = [];
 	let prevDistance = 0;
 
 	(zoomImg as HTMLElement).style.left = '0px';
