@@ -77,7 +77,7 @@ gulp.task('scripts', function() {
 				outFile: 'bundle.js'
 			})
 		)
-		// .pipe(gconcat('bundle.js'))
+		.pipe(gconcat('bundle.js'))
 		.pipe(gulp.dest('build/js'));
 });
 
@@ -122,7 +122,7 @@ gulp.task('clean', function() {
 gulp.task('watch', function() {
 	gulp.watch('src/styles/**/*', [ 'styles' ]);
 	gulp.watch([ 'src/templates/**/*', './*.pug' ], [ 'templates' ]);
-	gulp.watch('src/js/*.js', [ 'scripts' ]);
+	gulp.watch('src/ts/*.ts', [ 'scripts' ]);
 	gulp.watch('src/img/**/*', [ 'images' ]);
 	gulp.watch('src/img/icons/*.svg', [ 'icons' ]);
 

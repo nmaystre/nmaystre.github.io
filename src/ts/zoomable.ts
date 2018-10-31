@@ -2,15 +2,15 @@ window.onload = function() {
 	const zoomWrapper = document.querySelector('.event__camera-wrp');
 	const zoomImg = document.querySelector('.event__camera-img');
 
-	const zoomWrpWidth = zoomWrapper.offsetWidth;
-	const zoomImgWidth = zoomImg.offsetWidth;
+	const zoomWrpWidth = (zoomWrapper as HTMLElement).offsetWidth;
+	const zoomImgWidth = (zoomImg as HTMLElement).offsetWidth;
 
 	let pointerEvents = [];
 	let prevDistance = 0;
 
-	zoomImg.style.left = '0px';
+	(zoomImg as HTMLElement).style.left = '0px';
 
-	zoomWrapper.addEventListener('pointerdown', function startGesture(e) {
+	zoomWrapper.addEventListener('pointerdown', function startGesture(e: PointerEvent): void {
 		zoomWrapper.setPointerCapture(e.pointerId);
 
 		pointerEvents.push({
@@ -30,21 +30,21 @@ window.onload = function() {
 		});
 	});
 
-	zoomWrapper.addEventListener('pointermove', function moveGesture(e) {
+	zoomWrapper.addEventListener('pointermove', function moveGesture(e: PointerEvent): void {
 		let startX = pointerEvents[0].prevPosition.x;
-		let x = e.x;
-		let dx = x - startX;
+		let x: number = e.x;
+		let dx: number = x - startX;
 
 		let movedLeft = pointerEvents[0].startPosition.x + dx;
-		zoomImg.style.left = movedLeft + 'px';
+		(zoomImg as HTMLElement).style.left = movedLeft + 'px';
 		pointerEvents[0].prevPosition.x = pointerEvents[0].currentPosition.x;
 	});
 
-	zoomWrapper.addEventListener('pointerup', function endGesture(e) {
+	zoomWrapper.addEventListener('pointerup', function endGesture(e: PointerEvent): void {
 		pointerEvents = [];
 	});
 
-	zoomWrapper.addEventListener('pointercancel', function cancelGesture(e) {
+	zoomWrapper.addEventListener('pointercancel', function cancelGesture(e: PointerEvent): void {
 		pointerEvents = [];
 	});
 };

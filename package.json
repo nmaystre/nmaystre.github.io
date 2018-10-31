@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/chart.js": "^2.7.40",
     "browser-sync": "^2.26.3",
     "chart.js": "^2.7.2",
     "del": "^3.0.0",

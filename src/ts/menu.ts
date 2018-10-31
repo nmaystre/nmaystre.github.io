@@ -1,4 +1,4 @@
-let menuOpen = false;
+let menuOpen: boolean = false;
 const menuBtn = document.querySelector('.hamburger__icon');
 const menuNav = document.querySelector('.menu');
 
