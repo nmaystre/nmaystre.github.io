@@ -1,5 +1,4 @@
 {
-
   "name": "task1",
   "version": "0.0.1",
   "description": "",
@@ -10,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/chart.js": "^2.7.40",
     "browser-sync": "^2.26.3",
     "chart.js": "^2.7.2",
     "del": "^3.0.0",
@@ -25,6 +25,8 @@
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.1",
     "gulp-svgmin": "^2.1.0",
-    "gulp-svgstore": "^7.0.0"
+    "gulp-svgstore": "^7.0.0",
+    "gulp-typescript": "^5.0.0-alpha.3",
+    "typescript": "^3.1.4"
   }
 }
