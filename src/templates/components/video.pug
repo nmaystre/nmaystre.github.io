@@ -4,25 +4,29 @@
                 id: 'video-1',
                 brightness: '50',
                 contrast: '50',
-                position: 'topl'
+                position: 'topl',
+                source: '../streams/sosed.mp4'
             },
             {   
                 id: 'video-2',
                 brightness: '50',
                 contrast: '50',
-                position: 'topr'
+                position: 'topr',
+                source: '../streams/cat.mp4'
             },
             {   
                 id: 'video-3',
                 brightness: '50',
                 contrast: '50',
-                position: 'bottoml'
+                position: 'bottoml',
+                source: '../streams/cat.mp4'
             },
             {   
                 id: 'video-4',
                 brightness: '50',
                 contrast: '50',
-                position: 'bottomr'
+                position: 'bottomr',
+                source: '../streams/dog.mp4'
             },
         ];
   
@@ -30,7 +34,8 @@ section.video
     ul.video__list
       each video in videoData
         li.video__item(class=`video__item--`+video.position)
-            video.video__player(id=video.id muted frameborder="0")
+            video.video__player(id=video.id muted controls loop  autoplay frameborder="0")
+                source(src=video.source)
             form.video__controls
               label.video__label.video__label--brightness Яркость:&nbsp; 
                 span.video__value.video__value--brightness=video.brightness+` %`
